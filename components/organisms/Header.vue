@@ -20,7 +20,7 @@
 
       <ul class="navbar-nav ml-auto mr-4">
         <li v-for="categorie in categories" :key="categorie" class="nav-item">
-          <NuxtLink class="nav-link text-dark font-weight-bold" :to="{name:categorie}">{{categorie}}</NuxtLink>
+          <NuxtLink class="nav-link text-dark font-weight-bold" :to="`/category/${categorie}`">{{categorie}}</NuxtLink>
         </li>
       </ul>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex justify-content-between">
-      <h1 class="my-1">{{ $nuxt.$route.name }}</h1>
+      <h1 class="my-1">{{ title }}</h1>
 
       <div class="form-inline d-flex align-items-center">
         <label class="form-inline font-weight-bold pr-3" for="order">Order by:</label>
@@ -32,13 +32,18 @@
   export default {
     data(){
       return{
+        title: String
       }
     },
     components:{
       ProductItem
     },
-    mounted(){
-      this.$store.dispatch('fetchTechProduct', $nuxt.$route.name)
+    created(){
+      const routePath = $nuxt.$route.path
+      let parseTitle = routePath.split('/')
+      let title = parseTitle[parseTitle.length-1]
+      this.title = title
+      this.$store.dispatch('fetchTechProduct', title)
     },
     computed:{
       $products(){
