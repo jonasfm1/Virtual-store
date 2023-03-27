@@ -1,17 +1,22 @@
 <template>
   <div>
     <Banner />
+    
     <div>
+
       <div class="row no-gutters my-3">
         <img class="all-products" src="~/assets/img/mais-vendidos.png"/>
       </div>
+
       <div class="row ">
         <ProductItem v-for="product in $products" :key="product.id"
         :imagem="product.image"
         :title="product.title"
         />
       </div>
+
     </div>
+
   </div>
 </template>
 

@@ -18,7 +18,6 @@ export const actions = {
       })
     })
   },
-
   fetchProduct(context, searchFor){
     fetch('https://fakestoreapi.com/products')
     .then(resolve => resolve.json())
@@ -27,6 +26,16 @@ export const actions = {
       console.log(titles)
 
       context.commit('SET_PRODUCTS', titles)
+    })
+  },
+  
+  fetchTechProduct(context,type){
+    new Promise((resolve, reject) => {
+      fetch(`https://fakestoreapi.com/products/category/${type}`)
+      .then(resolve => resolve.json())
+      .then(data => {
+        context.commit('SET_PRODUCTS', data)
+      })
     })
   }
 }
