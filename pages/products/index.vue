@@ -1,12 +1,17 @@
 <template>
   <div>
-    <h1>Nome do Produto</h1>
+    <!-- Quando parametro nao for passado cai nessa pagina -->
+    Nenhum Produdo encontrado
   </div>
 </template>
 
 <script>
   export default {
-    
+    data(){
+      return{
+
+      }
+    },
   }
 </script>
 

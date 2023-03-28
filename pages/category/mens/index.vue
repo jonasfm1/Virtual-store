@@ -19,8 +19,10 @@
 
     <div class="row ">
       <ProductItem v-for="product in $products" :key="product.id"
-      :imagem="product.image"
-      :title="product.title"
+        :imagem="product.image"
+        :title="product.title"
+        :price="product.price"
+        :id="product.id"
       />
     </div>
 
