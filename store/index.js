@@ -22,6 +22,11 @@ export const actions = {
 
   // PEGA TODOS OS PRODUTOS DE UMA CATEGORIA
   fetchCategoryProduct(context,type){
+    const mens = "men's clothing"
+    const women = "women's clothing"
+    type === "mens" ? type = mens : type === "womens" 
+    ? type = women : type
+    
     new Promise((resolve, reject) => {
       fetch(`https://fakestoreapi.com/products/category/${type}`)
       .then(resolve => resolve.json())
@@ -31,6 +36,7 @@ export const actions = {
     })
   },
 
+  // PEGA PRODUTO ESPECIFICO NA CATEGORIA
   fetchProduct(context, params){
     if(params.category === ''){
       fetch(`https://fakestoreapi.com/products`)
@@ -49,8 +55,6 @@ export const actions = {
     }
 
   },
-  
-  
 }
 
 export const getters = {

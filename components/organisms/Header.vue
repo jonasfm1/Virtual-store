@@ -50,7 +50,6 @@
           return response.json()
         })
         .then((data) => {
-          console.log(data);
           this.categories = data.map(category => {
             let parseCategory = category.includes(" ")
             ? category.split(" ").shift().replace(/[^a-zA-Z0-9]/g, "") : category
