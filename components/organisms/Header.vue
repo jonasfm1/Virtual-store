@@ -50,15 +50,25 @@
           return response.json()
         })
         .then((data) => {
-          this.categories = data;
+          console.log(data);
+          this.categories = data.map(category => {
+            let parseCategory = category.includes(" ")
+            ? category.split(" ").shift().replace(/[^a-zA-Z0-9]/g, "") : category
+            return parseCategory
+          })
         })
       })
     },
     methods:{
       searchProduct(){
+        const routePath = $nuxt.$route.path
+        let parseCategory = routePath.split('/')
+        let category = parseCategory[parseCategory.length-1]
+
         let productName = (document.getElementById("search-product").value)
-        let productNameParse = productName.charAt(0).toUpperCase() + productName.slice(1);
-        this.$store.dispatch('fetchProduct', productNameParse)
+        let product = productName.charAt(0).toUpperCase() + productName.slice(1)
+
+        this.$store.dispatch('fetchProduct', {category, product})
       }
     }
   }

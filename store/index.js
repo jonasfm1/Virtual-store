@@ -9,6 +9,7 @@ export const mutations = {
 }
 
 export const actions = {
+  // PEGA TODOS OS PRODUTOS
   fetchProducts(context){
     new Promise((resolve, reject) => {
       fetch('https://fakestoreapi.com/products')
@@ -18,18 +19,9 @@ export const actions = {
       })
     })
   },
-  fetchProduct(context, searchFor){
-    fetch('https://fakestoreapi.com/products')
-    .then(resolve => resolve.json())
-    .then((data) => {
-      let titles = data.filter(product => product.title.includes(searchFor))
-      console.log(titles)
 
-      context.commit('SET_PRODUCTS', titles)
-    })
-  },
-  
-  fetchTechProduct(context,type){
+  // PEGA TODOS OS PRODUTOS DE UMA CATEGORIA
+  fetchCategoryProduct(context,type){
     new Promise((resolve, reject) => {
       fetch(`https://fakestoreapi.com/products/category/${type}`)
       .then(resolve => resolve.json())
@@ -37,7 +29,28 @@ export const actions = {
         context.commit('SET_PRODUCTS', data)
       })
     })
-  }
+  },
+
+  fetchProduct(context, params){
+    if(params.category === ''){
+      fetch(`https://fakestoreapi.com/products`)
+      .then(resolve => resolve.json())
+      .then((data) => {
+        let titles = data.filter(product => product.title.includes(params.product))
+        context.commit('SET_PRODUCTS', titles)
+      })
+    }else{
+      fetch(`https://fakestoreapi.com/products/category/${params.category}`)
+      .then(resolve => resolve.json())
+      .then((data) => {
+        let titles = data.filter(product => product.title.includes(params.product))
+        context.commit('SET_PRODUCTS', titles)
+      })
+    }
+
+  },
+  
+  
 }
 
 export const getters = {

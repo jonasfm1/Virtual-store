@@ -38,12 +38,12 @@
     components:{
       ProductItem
     },
-    created(){
+    mounted(){
       const routePath = $nuxt.$route.path
       let parseTitle = routePath.split('/')
       let title = parseTitle[parseTitle.length-1]
       this.title = title
-      this.$store.dispatch('fetchTechProduct', title)
+      this.$store.dispatch('fetchCategoryProduct', title)
     },
     computed:{
       $products(){
