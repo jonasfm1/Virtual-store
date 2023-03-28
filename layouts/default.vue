@@ -1,5 +1,5 @@
 <template>
-  <div class="container container-sm-fluid">
+  <div class="container-fluid container-md">
     <Header />
     <Nuxt />
   </div>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SelectOrder @orderBy="orderBy($event)"/>
     <Banner />
     <div>
       <div class="row no-gutters my-3">
@@ -20,6 +21,7 @@
 <script>
   import ProductItem from '~/components/atoms/ProductItem.vue';
   import Banner from '~/components/atoms/Banner.vue';
+  import SelectOrder from '~/components/atoms/selectOrder.vue';
 
   export default {
     data(){
@@ -27,7 +29,9 @@
       }
     },
     components:{
-      Banner, ProductItem,
+      Banner,
+      ProductItem,
+      SelectOrder
     },
     mounted(){
       this.$store.dispatch('fetchProducts')
@@ -37,6 +41,11 @@
         return this.$store.getters.$products
       }
     },
+    methods:{
+      orderBy(event){
+        console.log(this.$products);
+      }
+    }
   }
 </script>
 
