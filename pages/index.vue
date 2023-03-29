@@ -26,6 +26,7 @@
   export default {
     data(){
       return{
+
       }
     },
     components:{
@@ -42,8 +43,8 @@
       }
     },
     methods:{
-      orderBy(event){
-        console.log(this.$products);
+      orderBy(option){
+        this.$store.dispatch('order_by', {product:this.$products, sortedBy:option})
       }
     }
   }

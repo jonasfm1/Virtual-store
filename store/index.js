@@ -7,8 +7,52 @@ export const mutations = {
   SET_PRODUCTS(state, products){
     state.products = products
   },
+
   SET_PRODUCT(state, product){
     state.product = product
+  },
+
+  ORDER_BY(state, sortedArray){
+    
+    switch (sortedArray.sortedBy) {
+      case 'asc':
+        sortedArray.product.sort( function(current, next) {
+          return current.title < next.title ? -1 : current.title > next.title ? 1 : 0;
+        })
+        state.products = sortedArray.product
+      break;
+
+      case 'desc':
+        sortedArray.product.sort( function(current, next) {
+          return current.title > next.title ? -1 : current.title > next.title ? 1 : 0;
+        })
+        state.products = sortedArray.product
+      break;
+
+      case 'lowest-price':
+        sortedArray.product.sort( function(current, next) {
+          return current.price < next.price ? -1 : current.price > next.price ? 1 : 0;
+        })
+        state.products = sortedArray.product
+      break;
+        
+      case 'biggest-price':
+        sortedArray.product.sort( function(current, next) {
+          return current.price > next.price ? -1 : current.price > next.price ? 1 : 0;
+        })
+        state.products = sortedArray.product
+      break;
+
+      case 'Best-evaluation':
+        sortedArray.product.sort( function(current, next) {
+          return current.rating.rate > next.rating.rate ? -1 : current.rating.rate > next.rating.rate ? 1 : 0;
+        })
+        state.products = sortedArray.product
+      break;
+      default:
+
+      break;
+    }
   },
 }
 
@@ -60,6 +104,10 @@ export const actions = {
     fetch(`https://fakestoreapi.com/products/${idProduct}`)
     .then(resolve => resolve.json())
     .then(data => context.commit('SET_PRODUCT', data))
+  },
+
+  order_by(context, arrayToSorted){
+    context.commit('ORDER_BY', arrayToSorted)
   }
 }
 
