@@ -3,15 +3,17 @@
     
     <div class="d-flex justify-content-between">
       <h1 class="my-1">{{ title }}</h1>
-      <SelectOrder />
+      <SelectOrder @orderBy="orderBy($event)"/>
     </div>
 
     <div class="mb-4">
       <img class="rounded" src="~/assets/img/electronics.jpg" style="height: 200px; width: 100%;">
     </div>
 
-    <div class="row ">
+    <div class="row d-flex justify-content-center">
+      <NotFound v-show="error"/>
       <ProductItem v-for="product in $products" :key="product.id"
+        :rate="product.rating.rate"
         :imagem="product.image"
         :title="product.title"
         :price="product.price"
@@ -26,16 +28,19 @@
   
   import ProductItem from '~/components/atoms/ProductItem.vue';
 import SelectOrder from '~/components/atoms/selectOrder.vue';
+import NotFound from '~/components/organisms/notFound.vue';
   export default {
     data(){
       return{
-        title: String
+        error: false,
+        title: ''
       }
     },
     components:{
-    ProductItem,
-    SelectOrder
-},
+      ProductItem,
+      SelectOrder,
+      NotFound
+    },
     mounted(){
       const routePath = $nuxt.$route.path
       let parseTitle = routePath.split('/')
@@ -43,9 +48,17 @@ import SelectOrder from '~/components/atoms/selectOrder.vue';
       this.title = title
       this.$store.dispatch('fetchCategoryProduct', title)
     },
+    updated(){
+      this.$store.getters.$products == 0 ? this.error = true : this.error = false
+    },
     computed:{
       $products(){
         return this.$store.getters.$products
+      }
+    },
+    methods:{
+      orderBy(option){
+        this.$store.dispatch('order_by', {product:this.$products, sortedBy:option})
       }
     }
   

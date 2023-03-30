@@ -6,14 +6,18 @@
       <div class="row no-gutters my-3">
         <img class="all-products" src="~/assets/img/mais-vendidos.png"/>
       </div>
-      <div class="row">
+
+      <div class="row d-flex justify-content-center">
+        <notFound v-show="error" :hide="error"/>
         <ProductItem v-for="product in $products" :key="product.id"
+          :rate="product.rating.rate"
           :imagem="product.image"
           :title="product.title"
           :price="product.price"
           :id="product.id"
         />
       </div>
+
     </div>
   </div>
 </template>
@@ -22,20 +26,19 @@
   import ProductItem from '~/components/atoms/ProductItem.vue';
   import Banner from '~/components/atoms/Banner.vue';
   import SelectOrder from '~/components/atoms/selectOrder.vue';
+  import notFound from '~/components/organisms/notFound.vue'
 
   export default {
     data(){
       return{
-
+        error: false
       }
     },
     components:{
       Banner,
       ProductItem,
-      SelectOrder
-    },
-    mounted(){
-      this.$store.dispatch('fetchProducts')
+      SelectOrder,
+      notFound
     },
     computed:{
       $products(){
@@ -46,7 +49,13 @@
       orderBy(option){
         this.$store.dispatch('order_by', {product:this.$products, sortedBy:option})
       }
-    }
+    },
+    mounted(){
+      this.$store.dispatch('fetchProducts')
+    },
+    updated(){
+      this.$store.getters.$products == 0 ? this.error = true : this.error = false
+    },
   }
 </script>
 
