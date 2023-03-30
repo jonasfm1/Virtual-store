@@ -2,7 +2,6 @@
   <div>
     <h2>Meu Carrinho</h2>
     <div class="row no-gutters">
-
       <ul class="col-12 col-xl-9 list-group px-2">
         <div v-if="$cart.length == 0">
           Seu carrinho esta vazio
@@ -52,6 +51,7 @@
         </li>
       </ul>
 
+      <!-- RESUME CART -->
       <div class="col-12 col-lg-5 col-xl-3 px-2 py-3 py-lg-0">
         <div class="">
           <div class="card">
@@ -66,7 +66,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>

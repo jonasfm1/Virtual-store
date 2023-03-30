@@ -167,5 +167,3 @@ export const getters = {
     return state.cart
   }
 }
-
-// this.amount === 0 ? this.amount = 0 : this.amount--
