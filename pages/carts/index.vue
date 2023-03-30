@@ -3,7 +3,7 @@
     <h2>Meu Carrinho</h2>
     <div class="row no-gutters">
 
-      <ul class="col-12 list-group">
+      <ul class="col-12 col-xl-9 list-group px-2">
         <div v-if="$cart.length == 0">
           Seu carrinho esta vazio
         </div>
@@ -18,21 +18,21 @@
                 </div>
               </div>
             </div>
-            <div class="col-2 col-sm-2 col-lg-1">
+            <div class="col-2 col-sm-2 col-lg-2">
               <h6>Amount</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">{{ product.amount }}</div>
             </div>
-            <div class="col-3 col-sm-2 col-lg-1">
+            <div class="col-3 col-sm-2 col-lg-3">
               <h6>Price</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">U$ {{ product.price }}</div>
             </div>
-            <div class="col-4 col-sm-3 col-lg-2">
+            <div class="col-4 col-sm-3 col-lg-3">
               <h6>Total</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">U$ {{ product.total }}</div>
             </div>
-            <div class="d-flex col-12 col-sm-12 col-md-6 col-lg-4">
-              <div class="col-7 d-flex align-items-end">
-                <div class="input-group d-flex justify-content-end">
+            <div class="d-flex col-12 col-sm-12 col-md-6 col-lg-4 mt-2">
+              <div class="col-7 d-flex px-0">
+                <div class="input-group d-flex">
                   <span class="input-group-btn mr-2">
                     <button type="button" class="btn btn-danger font-weight-bold" :data-product="product.id" @click="decreaseProduct">-</button>
                   </span>
@@ -43,7 +43,6 @@
                 </div>
               </div>
               <div class="col-5 d-flex flex-column justify-content-between">
-                <h6 class="d-flex justify-content-center mb-1">Excluir</h6>
                 <button class="btn btn-danger" :data-product="product.id" @click="destroyProduct">
                   Excluir
                 </button>
@@ -52,6 +51,22 @@
           </div>
         </li>
       </ul>
+
+      <div class="col-12 col-lg-5 col-xl-3 px-2 py-3 py-lg-0">
+        <div class="">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Resume Cart</h5>
+              <div class="font-weight-bold">Amount product: {{  }}</div>
+              <div class="font-weight-bold">Total: U$ {{  }}</div>
+              <div>
+                <button type="button" class="btn btn-success col mt-3">Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>

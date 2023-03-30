@@ -73,9 +73,10 @@
         const routePath = $nuxt.$route.path
         let parseCategory = routePath.split('/')
         let category = parseCategory[parseCategory.length-1]
-
+        
         let productName = (document.getElementById("search-product").value)
         let product = productName.charAt(0).toUpperCase() + productName.slice(1)
+        document.getElementById('search-product').value = ''
 
         this.$store.dispatch('fetchProduct', {category, product})
       }
