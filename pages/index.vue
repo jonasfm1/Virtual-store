@@ -1,6 +1,8 @@
 <template>
   <div>
-    <SelectOrder @orderBy="orderBy($event)"/>
+    <div class="row d-flex justify-content-end">
+      <SelectOrder @orderBy="orderBy($event)"/>
+    </div>
     <Banner />
     <div>
       <div class="row no-gutters my-3">
