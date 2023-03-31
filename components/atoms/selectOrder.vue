@@ -1,5 +1,5 @@
 <template>
-  <div class="form-inline d-flex align-items-center justify-content-end my-2">
+  <div class="col-12 col-sm-6 form-inline d-flex align-items-center justify-content-end my-2">
         <label class="form-inline font-weight-bold pr-3" for="order">Order by:</label>
         <select id="order" class="form-control" @change="$emit('orderBy',$event.target.value)">
           <option value="" disabled selected>Select</option>

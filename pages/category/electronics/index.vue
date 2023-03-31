@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between">
-      <h1 class="my-1">{{ title }}</h1>
+    <div class="row d-flex justify-content-between">
+      <h1 class="col-12 col-sm-6 my-1 my-1">{{ title }}</h1>
 
       <SelectOrder @orderBy="orderBy($event)"/>
     </div>
