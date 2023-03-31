@@ -2,16 +2,19 @@
   <div>
     <h2>Meu Carrinho</h2>
     <div class="row no-gutters">
+
       <ul class="col-12 col-lg-9 list-group px-2">
+
         <div v-if="$cart.length == 0">
-          Seu carrinho esta vazio
+          <h6>Your shopping cart is empty</h6>
         </div>
+
         <li v-for="product in $cart" :key="product.id" class="list-group-item">
           <div class="row">
-            <div class="col-9 col-sm-5 col-lg-4">
+            <div class="col-9 col-sm-4 col-lg-4">
               <div class="d-flex">
                 <img class="product-image" :src="product.image">
-                <div class="text-truncate px-3">
+                <div class="text-truncate px-2">
                   <h6>Name</h6>
                   <NuxtLink class="pointer" :to="`/products/${product.id}`">
                     <h6 class="text-primary text-truncate py-2 mt-3">{{ product.title }}</h6>
@@ -19,35 +22,29 @@
                 </div>
               </div>
             </div>
-            <div class="col-2 col-sm-2 col-lg-2">
+            <div class="col-3 col-sm-2 col-lg-2">
               <h6>Amount</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">{{ product.amount }}</div>
             </div>
-            <div class="col-3 col-sm-2 col-lg-3">
+            <div class="col-3 col-sm-3 col-lg-3 mt-2 mt-sm-0">
               <h6>Price</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">U$ {{ product.price }}</div>
             </div>
-            <div class="col-4 col-sm-3 col-lg-3">
+            <div class="col-4 col-sm-3 col-lg-3 mt-2 mt-sm-0">
               <h6>Total</h6>
               <div class="text-primary font-weight-bold py-2 mt-3">U$ {{ product.total }}</div>
             </div>
-            <div class="d-flex col-12 col-sm-12 col-md-6 col-lg-5 mt-2">
-              <div class="col-7 d-flex px-0">
-                <div class="input-group d-flex">
-                  <span class="input-group-btn mr-2">
-                    <button type="button" class="btn btn-danger font-weight-bold" :data-product="product.id" @click="decreaseProduct">-</button>
-                  </span>
-                  <input type="text" class="col-md-6 form-control input-number rounded text-center" :value="product.amount" min="1">
-                  <span class="input-group-btn ml-2">
-                    <button type="button" class="btn btn-success font-weight-bold" :data-product="product.id" @click="incrementProduct">+</button>
-                  </span>
-                </div>
+            <div class="d-flex flex-column flex-md-row col-5 col-sm-12 col-md-6 col-lg-5 mt-2 mt-md-2">
+              <div class="col- d-flex mb-2">
+                <button type="button" class="btn btn-danger font-weight-bold py-0" :data-product="product.id" @click="decreaseProduct">-</button>
+                <input type="text" class="col-md-6 form-control input-number rounded text-center p-0 input-amout" :value="product.amount" min="1">
+                <button type="button" class="btn btn-success font-weight-bold px-2 py-0" :data-product="product.id" @click="incrementProduct">+</button>
               </div>
-              <div class="col-5 d-flex flex-column justify-content-between">
+              <div class="col- d-flex flex-column justify-content-between">
                 <button class="btn btn-danger" :data-product="product.id" @click="destroyProduct">
                   Excluir
                 </button>
-              </div>
+              </div> 
             </div>
           </div>
         </li>
@@ -124,5 +121,8 @@
 }
 .pointer{
   cursor: pointer;
+}
+.input-amout{
+  margin: 0rem 0.8rem 0rem 0.8rem;
 }
 </style>
