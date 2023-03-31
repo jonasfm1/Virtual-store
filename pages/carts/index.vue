@@ -13,7 +13,9 @@
                 <img class="product-image" :src="product.image">
                 <div class="text-truncate px-3">
                   <h6>Name</h6>
-                  <h6 class="text-primary text-truncate py-2 mt-3">{{ product.title }}</h6>
+                  <NuxtLink class="pointer" :to="`/products/${product.id}`">
+                    <h6 class="text-primary text-truncate py-2 mt-3">{{ product.title }}</h6>
+                  </NuxtLink>
                 </div>
               </div>
             </div>
@@ -57,8 +59,8 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Resume Cart</h5>
-              <div class="font-weight-bold">Amount product: {{  }}</div>
-              <div class="font-weight-bold">Total: U$ {{  }}</div>
+              <div class="font-weight-bold">Total amount products: {{ cartResume.totalProduct }}</div>
+              <div class="font-weight-bold">Final value: {{ cartResume.totalValue }}</div>
               <div>
                 <button type="button" class="btn btn-success col mt-3">Checkout</button>
               </div>
@@ -74,15 +76,16 @@
   export default {
     data(){
       return{
-        product:{
-          amount: Number
+        cartResume:{
+          totalProduct: 0,
+          totalValue: 0,
         }
       }
     },
     computed:{
       $cart(){
         return this.$store.getters.$cart
-      }
+      },
     },
     methods:{
       incrementProduct(event){
@@ -99,8 +102,18 @@
         let idProductDestroy = event.target.dataset.product
         this.$store.dispatch('destroyProduct', idProductDestroy)
         this.$forceUpdate();
-      }
+      },
     },
+    mounted(){
+      let productsInCart = this.$cart
+      this.cartResume.totalProduct = productsInCart.reduce((total, { amount }) => total + Number(amount),0)
+      this.cartResume.totalValue = productsInCart.reduce((accumulator, { total }) => accumulator + Number(total),0)
+    },
+    updated(){
+      let productsInCart = this.$cart
+      this.cartResume.totalProduct = productsInCart.reduce((total, { amount }) => total + Number(amount),0)
+      this.cartResume.totalValue = productsInCart.reduce((accumulator, { total }) => accumulator + Number(total),0)
+    }
   }
 </script>
 
@@ -108,5 +121,8 @@
 .product-image{
   height: 80px;
   width: 80px;
+}
+.pointer{
+  cursor: pointer;
 }
 </style>
