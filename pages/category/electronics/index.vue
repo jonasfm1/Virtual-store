@@ -7,7 +7,7 @@
     </div>
 
     <div class="mb-4">
-      <img class="rounded" src="~/assets/img/electronics.jpg" style="height: 200px; width: 100%;">
+      <img class="rounded" src="~/assets/img/tech.png" style="height: 200px; width: 100%;">
     </div>
 
     <div class="row d-flex justify-content-center">
