@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'test-adr',
+    title: 'Virtual-store',
     htmlAttrs: {
       lang: 'en'
     },
